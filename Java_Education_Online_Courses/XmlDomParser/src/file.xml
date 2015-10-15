@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<market>
+	<department id="1">
+		<product id="1">
+			<title>Product1</title>
+			<price>30</price>
+			<amount type = "шт">10</amount>
+		</product>
+		<product id="2">
+			<title>Product2</title>
+			<price>30</price>
+			<amount type = "шт">10</amount>
+		</product>
+		<product id="3">
+			<title>Product3</title>
+			<price>30</price>
+			<amount type = "шт">10</amount>
+		</product>
+	</department>
+	<department id="2">
+		<product id="1">
+			<title>Computer1</title>
+			<price>1000</price>
+			<amount type = "шт">3</amount>
+		</product>
+		<product id="2">
+			<title>Computer2</title>
+			<price>7000</price>
+			<amount type = "шт">7</amount>
+		</product>
+		<product id="3">
+			<title>Computer3</title>
+			<price>12000</price>
+			<amount type = "шт">2</amount>
+		</product>
+	</department>
+</market>

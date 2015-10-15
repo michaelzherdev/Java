@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
+	
+	<bean id="print" class="Printer">
+		<constructor-arg index="0" value="Hello world!" />
+		<constructor-arg index="1" value="215" />
+		<constructor-arg index="2" value="100" />
+	</bean>	
+		
+	<bean id="single" class="Single" factory-method="getInstance">
+		<property name="list">
+			<list>
+				<value> value 1</value>
+				<value> value 2</value>
+				<value> value 3</value>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="recomendID" class="Recomend" />
+	<bean id="proxy" class="org.springframework.aop.framework.ProxyFactoryBean">
+		<property name="target" ref="single" />
+		<property name="interceptorNames">
+			<list>
+				<value>recomendID</value>
+			</list>
+		</property>
+	</bean>
+</beans>
+	

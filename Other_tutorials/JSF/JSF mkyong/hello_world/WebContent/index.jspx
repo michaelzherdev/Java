@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jsp:root xmlns:f="http://java.sun.com/jsf/core"
+          xmlns:jsp="http://java.sun.com/JSP/Page"
+          xmlns:h="http://java.sun.com/jsf/html"
+          xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xmlns="http://www.w3.org/1999/xhtml"
+          version="2.0">
+    <f:view>
+      <html>
+      <body>
+        <h:form>
+          <h:outputText value="Hello, world!"/>
+        </h:form>
+      </body>
+      </html>
+    </f:view>
+</jsp:root>

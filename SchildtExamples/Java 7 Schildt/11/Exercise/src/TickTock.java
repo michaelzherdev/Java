@@ -1,0 +1,94 @@
+// Применение методов wail и notify для имитации часов
+//  Вариант класса, в который введены вызовы метода
+// sleep() для организации отсчета времени
+class ThreadCom {
+	String state; // содержит сведения о состоянии часов
+	
+	synchronized void tick(boolean running) {
+		if(!running) { // остановить часы
+			state = "ticked";
+			notify(); // уведомить ожидающие потоки
+			return;
+		}
+		
+		System.out.print("Tick ");
+		
+		// ожидать 1\2 секунды
+		try {
+			Thread.sleep(500);
+		} catch(InterruptedException exc) {
+			System.out.println("Thread interrupted");
+		}
+		
+		state = "ticked"; // установить текущее состояние после такт tick
+		notify(); // разрешить выполнение метода tock;
+		try {
+			while(!state.equals("tocked"))
+			wait(); // ожидать завершения метода tock
+		} catch(InterruptedException exc) {
+			System.out.println("Thread interrupted");
+		}
+	}
+		
+	synchronized void tock(boolean running) {
+		if(!running) { // остановить часы
+			state = "tocked";
+			notify(); // уведомить ожидающие потоки
+			return;
+		}
+		System.out.println("Tock ");
+		// ожидать 1\2 секунды
+				try {
+					Thread.sleep(500);
+				} catch(InterruptedException exc) {
+					System.out.println("Thread interrupted");
+				}
+				
+		state = "tocked"; // установить текущее состояние после такт tock
+		notify(); // разрешить выполнение метода tick;
+		try {
+			while(!state.equals("ticked"))
+			wait(); // ожидать завершения метода tick
+		} catch(InterruptedException exc) {
+			System.out.println("Thread interrupted");
+		}
+	}
+}
+
+class MyThread implements Runnable {
+	Thread thrd;
+	ThreadCom ttOb;
+	
+	// построить новый поток
+	MyThread(String name, ThreadCom tt) {
+		thrd = new Thread(this, name);
+		ttOb = tt;
+		thrd.start(); // начать поток
+	}
+	
+	// начать исполнение нового потока
+	public void run() {
+		if(thrd.getName().compareTo("Tick") == 0) {
+				for(int i=0; i<5; i++) ttOb.tick(true);
+				ttOb.tick(false);
+		} else {
+			for(int i=0; i<5; i++) ttOb.tock(true);
+			ttOb.tock(false);
+		}
+	}
+}
+
+public class TickTock {
+	public static void main(String[] args) {
+		ThreadCom tt = new ThreadCom();
+		MyThread mt1 = new MyThread("Tick", tt);
+		MyThread mt2 = new MyThread("Tock", tt);
+		
+		try {
+			mt1.thrd.join();
+			mt2.thrd.join();
+		} catch(InterruptedException exc) {
+			System.out.println("Main thread interrupted.");
+		}
+	}
+}

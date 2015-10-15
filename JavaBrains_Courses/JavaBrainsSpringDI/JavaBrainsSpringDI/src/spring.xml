@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+
+	<bean id="triangle" class="org.mzherdev.Triangle">
+	<!-- 	<property name="type" value="Equilateral" /> -->
+		<constructor-arg value="Equilateral" type="java.lang.String"></constructor-arg>
+		<constructor-arg value="20" type="int"></constructor-arg>
+		
+		<!-- or with index:
+		<constructor-arg index="0"  value="Equilateral" ></constructor-arg>
+		<constructor-arg index="1" value="20" ></constructor-arg>
+		 -->
+	</bean>
+	
+		<!-- Injecting objects -->
+	<bean id="triangleInj" class="org.mzherdev.injection.TriangleInj">	
+		<property name="pointA" ref="zeroPoint"></property>
+		<!--  also can be as
+		<property name="pointA">
+			<idref="zeropoint">
+		</property>		
+		 -->
+		<property name="pointB" ref="point2"></property>
+		<!--  also can be as
+		<property name="pointB">
+			<bean class="org.mzherdev.injection.Point">
+				<property name="x" value="0" />
+				<property name="y" value="-20" />
+			</bean>
+		</property>		
+		 -->
+		<property name="pointC" ref="point3"></property>
+	</bean>
+	
+	<bean id="zeroPoint" class="org.mzherdev.injection.Point">
+		<property name="x" value="0" />
+		<property name="y" value="0" />	
+	</bean>
+	
+	<bean id="point2" class="org.mzherdev.injection.Point">
+		<property name="x" value="0" />
+		<property name="y" value="-20" />
+	</bean>
+	
+	<bean id="point3" class="org.mzherdev.injection.Point">
+		<property name="x" value="20" />
+		<property name="y" value="0" />
+	</bean>
+	
+	<alias name="triangleInj" alias="triangle-alias"/>
+	
+	<!--  collections -->
+	<bean id="triangle-col" class="org.mzherdev.injection.TriangleInj">
+		<property name="points">
+			<list>
+				<ref bean="zeroPoint" />
+				<ref bean="point2" />
+				<ref bean="point3" />
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="triangle-wire" class="org.mzherdev.injection.TriangleInj" autowire="byName">
+	</bean>
+	
+	<bean id="pointA" class="org.mzherdev.injection.Point">
+		<property name="x" value="0" />
+		<property name="y" value="0" />	
+	</bean>
+	
+	<bean id="pointB" class="org.mzherdev.injection.Point">
+		<property name="x" value="0" />
+		<property name="y" value="-20" />
+	</bean>
+	
+	<bean id="pointC" class="org.mzherdev.injection.Point">
+		<property name="x" value="20" />
+		<property name="y" value="0" />
+	</bean>
+	
+	<!--  bean definition -->
+	<bean id="parenttiangle" class="org.mzherdev.injection.TriangleInj">
+		<property name="pointA" ref="pointA" />
+	</bean>
+	
+	<bean id="triangle1" class="org.mzherdev.injection.TriangleInj" parent="parenttiangle"
+	 init-method="myInit" destroy-method="cleanUp">
+		<property name="pointB" ref="pointB" />
+		<property name="pointC" ref="pointC" />
+	</bean>
+	
+	<bean id="triangle2" class="org.mzherdev.injection.TriangleInj" parent="triangle1">
+		<property name="pointB" ref="pointB" />
+	</bean>
+	
+</beans>

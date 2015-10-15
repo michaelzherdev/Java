@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8"/>
+	<classpathentry kind="lib" path="C:/Frameworks/hibernate-core-4.0.0.CR2.jar"/>
+	<classpathentry kind="lib" path="C:/Frameworks/hibernate-jpa-2.0-api-1.0.1.Final.jar"/>
+	<classpathentry kind="lib" path="C:/Frameworks/mysql-connector-java-5.1.0-bin.jar"/>
+	<classpathentry kind="lib" path="C:/Frameworks/mysql-connector-java-5.1.24-bin.jar"/>
+	<classpathentry kind="lib" path="C:/Frameworks/dom4j.jar"/>
+	<classpathentry kind="lib" path="C:/Frameworks/hibernate/hibernate-commons-annotations-4.0.5.Final.jar"/>
+	<classpathentry kind="lib" path="C:/Frameworks/hibernate/jboss-logging-3.3.0.Final.jar"/>
+	<classpathentry kind="lib" path="C:/Frameworks/hibernate/jta-1.1.jar"/>
+	<classpathentry kind="lib" path="C:/Frameworks/hibernate/org.apache.commons.collections.jar"/>
+	<classpathentry kind="lib" path="C:/Frameworks/hibernate/javassist-3.10.0.GA.jar"/>
+	<classpathentry kind="lib" path="C:/Frameworks/hibernate/antlr-3.4-complete.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
